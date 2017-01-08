@@ -6,9 +6,9 @@ babel-compiler@6.13.0
 babel-runtime@0.1.13
 barbatus:css-compiler@0.3.6
 barbatus:scss-compiler@3.8.2
-barbatus:typescript@0.5.2
-barbatus:typescript-compiler@0.8.5
-barbatus:typescript-runtime@0.1.2
+barbatus:typescript@0.6.2_2
+barbatus:typescript-compiler@0.9.2_1
+barbatus:typescript-runtime@1.0.0
 base64@1.0.10
 binary-heap@1.0.10
 blaze@2.1.9

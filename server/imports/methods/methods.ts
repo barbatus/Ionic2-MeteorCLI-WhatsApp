@@ -1,8 +1,9 @@
 import {Meteor} from 'meteor/meteor';
-import {Chats} from "../../../both/collections/chats.collection";
-import {Messages} from "../../../both/collections/messages.collection";
+import Chats from '../../../both/collections/chats.collection';
+import Messages from '../../../both/collections/messages.collection';
 import {check, Match} from 'meteor/check';
 import {Profile} from '../../../both/models/profile.model';
+import {Chat} from '../../../both/models/chat.model';
 
 const nonEmptyString = Match.Where((str) => {
   check(str, String);
@@ -39,8 +40,8 @@ Meteor.methods({
     if (chatExists) throw new Meteor.Error('chat-exists',
       'Chat already exists');
  
-    const chat = {
-      memberIds: [this.userId, receiverId]
+    const chat = <Chat>{
+      memberIds: [this.userId, receiverId],
     };
  
     Chats.insert(chat);

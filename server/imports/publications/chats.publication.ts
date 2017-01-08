@@ -1,14 +1,14 @@
-import { Meteor } from 'meteor/meteor';
+import {Meteor} from 'meteor/meteor';
 
-import { Chats } from '../../../both/collections/chats.collection';
-import { Chat } from '../../../both/models/chat.model';
-import { Messages } from '../../../both/collections/messages.collection';
-import { Message } from '../../../both/models/message.model';
-import { Users } from '../../../both/collections/users.collection';
-import { User } from '../../../both/models/user.model';
+import Chats from '../../../both/collections/chats.collection';
+import {Chat} from '../../../both/models/chat.model';
+import Messages from '../../../both/collections/messages.collection';
+import {Message} from '../../../both/models/message.model';
+import Users from '../../../both/collections/users.collection';
+import {User} from '../../../both/models/user.model';
 
 Meteor.publishComposite('chats', function(): PublishCompositeConfig<Chat> {
-  if (!this.userId) return;
+  if (! this.userId) return;
  
   return {
     find: () => {

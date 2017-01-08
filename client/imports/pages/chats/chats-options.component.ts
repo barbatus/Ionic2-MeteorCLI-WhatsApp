@@ -51,9 +51,9 @@ export class ChatsOptionsComponent {
   }
  
   private handleLogout(alert): void {
-    Meteor.logout((e: Error) => {
+    Meteor.logout((err: Error) => {
       alert.dismiss().then(() => {
-        if (e) return this.handleError(e);
+        if (err) return this.handleError(err);
  
         this.navCtrl.setRoot(LoginComponent, {}, {
           animate: true
@@ -62,13 +62,13 @@ export class ChatsOptionsComponent {
     });
   }
  
-  private handleError(e: Error): void {
-    console.error(e);
+  private handleError(err: Error): void {
+    console.error(err);
  
     const alert = this.alertCtrl.create({
       title: 'Oops!',
-      message: e.message,
-      buttons: ['OK']
+      message: err.message,
+      buttons: ['OK'],
     });
  
     alert.present();

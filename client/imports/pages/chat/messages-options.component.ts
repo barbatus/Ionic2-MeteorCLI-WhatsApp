@@ -3,7 +3,7 @@ import {NavParams, NavController, ViewController, AlertController} from 'ionic-a
 import {Meteor} from 'meteor/meteor';
 import {MeteorObservable} from 'meteor-rxjs';
 import template from './messages-options.component.html';
-import style from "./messages-options.component.scss";
+import style from './messages-options.component.scss';
 import {TabsContainerComponent} from '../tabs-container/tabs-container.component';
  
 @Component({
@@ -46,32 +46,30 @@ export class MessagesOptionsComponent {
   }
  
   private handleRemove(alert): void {
-    MeteorObservable.call('removeChat', this.params.get('chat')._id).subscribe({
-      next: () => {
-        alert.dismiss().then(() => {
-          this.navCtrl.setRoot(TabsContainerComponent, {}, {
-            animate: true
-          });
-        });
-      },
-      error: (e: Error) => {
-        alert.dismiss().then(() => {
-          if (e) return this.handleError(e);
-  
+    Meteor.call('removeChat', this.params.get('chat')._id, (err: Error) => {
+      if (! err) {
+        return alert.dismiss().then(() => {
           this.navCtrl.setRoot(TabsContainerComponent, {}, {
             animate: true
           });
         });
       }
+      alert.dismiss().then(() => {
+        if (err) return this.handleError(err);
+
+        this.navCtrl.setRoot(TabsContainerComponent, {}, {
+          animate: true
+        });
+      });
     });
   }
  
-  private handleError(e: Error): void {
-    console.error(e);
+  private handleError(err: Error): void {
+    console.error(err);
  
     const alert = this.alertCtrl.create({
       title: 'Oops!',
-      message: e.message,
+      message: err.message,
       buttons: ['OK']
     });
  

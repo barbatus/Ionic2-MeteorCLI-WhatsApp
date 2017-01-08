@@ -31,22 +31,20 @@ export class ProfileComponent implements OnInit {
   }
  
   done(): void {
-    MeteorObservable.call('updateProfile', this.profile).subscribe({
-      next: () => {
-        this.navCtrl.push(TabsContainerComponent);
-      },
-      error(e: Error) {
-        this.handleError(e);
+    Meteor.call('updateProfile', this.profile, (err: Error) => {
+      if (! err) {
+        return this.navCtrl.push(TabsContainerComponent);
       }
+      this.handleError(err);
     });
   }
  
-  private handleError(e: Error): void {
-    console.error(e);
+  private handleError(err: Error): void {
+    console.error(err);
  
     const alert = this.alertCtrl.create({
       title: 'Oops!',
-      message: e.message,
+      message: err.message,
       buttons: ['OK']
     });
  

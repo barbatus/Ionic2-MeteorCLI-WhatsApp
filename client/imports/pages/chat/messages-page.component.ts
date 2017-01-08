@@ -1,35 +1,38 @@
-import {Component, OnInit, OnDestroy} from "@angular/core";
-import {NavParams, PopoverController} from "ionic-angular";
+import {Component, OnInit, OnDestroy} from '@angular/core';
+import {NavParams, PopoverController} from 'ionic-angular';
 import {Meteor} from 'meteor/meteor';
-import {Chat} from "../../../../both/models/chat.model";
-import {Messages} from "../../../../both/collections/messages.collection";
-import {Observable} from "rxjs";
-import {Message} from "../../../../both/models/message.model";
-import template from "./messages-page.component.html";
-import style from "./messages-page.component.scss";
+import {Chat} from '../../../../both/models/chat.model';
+import Messages from '../../../../both/collections/messages.collection';
+import {Observable} from 'rxjs';
+import {Message} from '../../../../both/models/message.model';
+import template from './messages-page.component.html';
+import style from './messages-page.component.scss';
 import {MessagesOptionsComponent} from './messages-options.component';
-import {MeteorObservable} from "meteor-rxjs";
+import {MeteorObservable} from 'meteor-rxjs';
+
+import {MeteorReactive} from 'angular2-meteor';
 
 @Component({
-  selector: "messages-page",
+  selector: 'messages-page',
   template,
   styles: [
     style
   ]
 })
-export class MessagesPage implements OnInit, OnDestroy {
+export class MessagesPage extends MeteorReactive implements OnInit, OnDestroy {
   private selectedChat: Chat;
-  private title: string;
-  private picture: string;
+  private title: Observable<string>;
+  private picture: Observable<string>;
   private messages: Observable<Message[]>;
   private senderId: string;
-  private message = "";
+  private message = '';
   private autoScroller: MutationObserver;
 
   constructor(
     navParams: NavParams,
     private popoverCtrl: PopoverController
   ) {
+    super();
     this.selectedChat = <Chat>navParams.get('chat');
     this.title = this.selectedChat.title;
     this.picture = this.selectedChat.picture;
@@ -37,20 +40,14 @@ export class MessagesPage implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    MeteorObservable.subscribe('messages', this.selectedChat._id).subscribe(() => {
-      MeteorObservable.autorun().subscribe(() => {
-        this.messages = Messages.find(
-          {chatId: this.selectedChat._id},
-          {sort: {createdAt: 1}}
-        ).map((messages: Message[]) => {
-          messages.forEach((message: Message) => {
-            message.ownership = this.senderId == message.senderId ? 'mine' : 'other';
-          });
+    this.subscribe('messages', this.selectedChat._id);
 
-          return messages;
-        });
-      });
-    });
+    this.messages = Messages
+      .find(
+        {chatId: this.selectedChat._id},
+        {sort: {createdAt: 1}}
+      )
+      .zone();
 
     this.autoScroller = this.autoScroll();
   }
@@ -96,7 +93,7 @@ export class MessagesPage implements OnInit, OnDestroy {
   }
 
   sendMessage(): void {
-    MeteorObservable.call('addMessage', this.selectedChat._id, this.message).zone().subscribe(() => {
+    Meteor.call('addMessage', this.selectedChat._id, this.message, () => {
       this.message = '';
     });
   }
@@ -115,5 +112,9 @@ export class MessagesPage implements OnInit, OnDestroy {
   scrollDown(): void {
     this.scroller.scrollTop = this.scroller.scrollHeight;
     this.messageEditor.focus();
+  }
+
+  getOwnerClass(message: Message): string {
+    return this.senderId === message.senderId ? 'mine' : 'other';
   }
 }

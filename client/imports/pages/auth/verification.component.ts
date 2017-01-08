@@ -4,8 +4,7 @@ import {Accounts} from 'meteor/accounts-base';
 import {ProfileComponent} from './profile.component';
 import template from './verification.component.html';
 import style from './verification.component.scss';
- 
- 
+
 @Component({
   selector: 'verification',
   template,
@@ -34,9 +33,9 @@ export class VerificationComponent implements OnInit {
   }
  
   verify(): void {
-    Accounts.verifyPhone(this.phone, this.code, (e: Error) => {
+    Accounts.verifyPhone(this.phone, this.code, (err: Error) => {
       this.zone.run(() => {
-        if (e) return this.handleError(e);
+        if (err) return this.handleError(err);
  
         this.navCtrl.setRoot(ProfileComponent, {}, {
           animate: true
@@ -45,12 +44,12 @@ export class VerificationComponent implements OnInit {
     });
   }
  
-  private handleError(e: Error): void {
-    console.error(e);
+  private handleError(err: Error): void {
+    console.error(err);
  
     const alert = this.alertCtrl.create({
       title: 'Oops!',
-      message: e.message,
+      message: err.message,
       buttons: ['OK']
     });
  

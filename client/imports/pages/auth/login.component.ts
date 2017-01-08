@@ -1,9 +1,9 @@
-import { Component } from '@angular/core';
-import { NavController, AlertController } from 'ionic-angular';
-import { Accounts } from 'meteor/accounts-base';
-import { VerificationComponent } from './verification.component';
+import {Component} from '@angular/core';
+import {NavController, AlertController} from 'ionic-angular';
+import {Accounts} from 'meteor/accounts-base';
+import {VerificationComponent} from './verification.component';
 import template from './login.component.html';
-import style from "./login.component.scss";
+import style from './login.component.scss';
  
 @Component({
   selector: 'login',
@@ -18,7 +18,7 @@ export class LoginComponent {
   constructor(
     private navCtrl: NavController,
     private alertCtrl: AlertController
-    ) {}
+  ) {}
  
   onInputKeypress({keyCode}: KeyboardEvent): void {
     if (keyCode == 13) {
@@ -49,9 +49,9 @@ export class LoginComponent {
   }
  
   private handleLogin(alert): void {
-    Accounts.requestPhoneVerification(this.phone, (e: Error) => {
+    Accounts.requestPhoneVerification(this.phone, (er: Error) => {
       alert.dismiss().then(() => {
-        if (e) return this.handleError(e);
+        if (er) return this.handleError(er);
  
         this.navCtrl.push(VerificationComponent, {
           phone: this.phone
@@ -60,12 +60,12 @@ export class LoginComponent {
     });
   }
  
-  private handleError(e: Error): void {
-    console.error(e);
+  private handleError(err: Error): void {
+    console.error(err);
  
     const alert = this.alertCtrl.create({
       title: 'Oops!',
-      message: e.message,
+      message: err.message,
       buttons: ['OK']
     });
  
