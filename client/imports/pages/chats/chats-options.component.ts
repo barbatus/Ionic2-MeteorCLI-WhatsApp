@@ -1,11 +1,12 @@
 import {Component} from '@angular/core';
 import {NavController, ViewController, AlertController} from 'ionic-angular';
 import {Meteor} from 'meteor/meteor';
+
 import {ProfileComponent} from '../auth/profile.component';
 import {LoginComponent} from '../auth/login.component';
 import template from './chats-options.component.html';
 import style from "./chats-options.component.scss";
- 
+
 @Component({
   selector: 'chats-options',
   template,
@@ -25,7 +26,7 @@ export class ChatsOptionsComponent {
       this.navCtrl.push(ProfileComponent);
     });
   }
- 
+
   logout(): void {
     const alert = this.alertCtrl.create({
       title: 'Logout',
@@ -44,12 +45,12 @@ export class ChatsOptionsComponent {
         }
       ]
     });
- 
+
     this.viewCtrl.dismiss().then(() => {
       alert.present();
     });
   }
- 
+
   private handleLogout(alert): void {
     Meteor.logout((err: Error) => {
       alert.dismiss().then(() => {
@@ -61,7 +62,7 @@ export class ChatsOptionsComponent {
       });
     });
   }
- 
+
   private handleError(err: Error): void {
     console.error(err);
  
@@ -70,7 +71,7 @@ export class ChatsOptionsComponent {
       message: err.message,
       buttons: ['OK'],
     });
- 
+
     alert.present();
   }
 }

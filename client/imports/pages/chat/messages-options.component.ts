@@ -2,6 +2,7 @@ import {Component} from '@angular/core';
 import {NavParams, NavController, ViewController, AlertController} from 'ionic-angular';
 import {Meteor} from 'meteor/meteor';
 import {MeteorObservable} from 'meteor-rxjs';
+
 import template from './messages-options.component.html';
 import style from './messages-options.component.scss';
 import {TabsContainerComponent} from '../tabs-container/tabs-container.component';

@@ -1,9 +1,9 @@
 import {Meteor} from 'meteor/meteor';
-import Chats from '../../../both/collections/chats.collection';
-import Messages from '../../../both/collections/messages.collection';
 import {check, Match} from 'meteor/check';
-import {Profile} from '../../../both/models/profile.model';
-import {Chat} from '../../../both/models/chat.model';
+
+import {Messages} from '../../../both/collections';
+import Chats from '../../../both/collections/chats.collection';
+import {Chat, Profile} from '../../../both/models';
 
 const nonEmptyString = Match.Where((str) => {
   check(str, String);

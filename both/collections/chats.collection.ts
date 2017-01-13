@@ -1,8 +1,9 @@
-import {Chat} from '../models/chat.model'
 import {MongoObservable} from 'meteor-rxjs';
 
-const chatCollection = new Mongo.Collection<Chat>('chats', {
+import Chat from '../models/chat.model'
+
+const ChatCollection = new Mongo.Collection<Chat>('chats', {
   transform: chat => new Chat(chat),
 });
-const Chats = MongoObservable.fromExisting<Chat>(chatCollection);
+const Chats = MongoObservable.fromExisting<Chat>(ChatCollection);
 export default Chats;

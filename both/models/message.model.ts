@@ -1,4 +1,4 @@
-export interface Message {
+interface Message {
   _id?: string;
   chatId?: string;
   senderId?: string;
@@ -6,3 +6,5 @@ export interface Message {
   ownership?: string;
   createdAt?: Date;
 }
+
+export default Message;

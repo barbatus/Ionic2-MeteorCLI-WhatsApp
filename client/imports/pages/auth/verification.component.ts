@@ -1,6 +1,7 @@
 import {Component, OnInit, NgZone} from '@angular/core';
 import {NavController, NavParams, AlertController} from 'ionic-angular';
 import {Accounts} from 'meteor/accounts-base';
+
 import {ProfileComponent} from './profile.component';
 import template from './verification.component.html';
 import style from './verification.component.scss';

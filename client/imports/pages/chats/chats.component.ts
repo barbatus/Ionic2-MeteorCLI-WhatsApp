@@ -1,20 +1,18 @@
 import {Component, OnInit, NgZone} from '@angular/core';
-import template from './chats.component.html'
 import {Observable} from 'rxjs';
 import {Meteor} from 'meteor/meteor';
 import {MeteorObservable} from 'meteor-rxjs';
-import {Chat} from '../../../../both/models/chat.model';
-import style from './chats.component.scss';
-import Chats from '../../../../both/collections/chats.collection';
-import Users from '../../../../both/collections/users.collection';
-import {Message} from '../../../../both/models/message.model';
-import Messages from '../../../../both/collections/messages.collection';
 import {NavController, PopoverController, ModalController} from 'ionic-angular';
+import {MeteorReactive} from 'angular2-meteor';
+
+import {Chat, Message} from '../../../../both/models';
+import {Users, Messages} from '../../../../both/collections';
+import Chats from '../../../../both/collections/chats.collection';
+import style from './chats.component.scss';
+import template from './chats.component.html';
+import {NewChatComponent} from './new-chat.component';
 import {MessagesPage} from '../chat/messages-page.component';
 import {ChatsOptionsComponent} from '../chats/chats-options.component';
-import {NewChatComponent} from './new-chat.component';
-
-import {MeteorReactive} from 'angular2-meteor';
 
 @Component({
   selector: 'chats',

@@ -1,11 +1,8 @@
 import {Meteor} from 'meteor/meteor';
 
+import {Messages, Users} from '../../../both/collections';
 import Chats from '../../../both/collections/chats.collection';
-import {Chat} from '../../../both/models/chat.model';
-import Messages from '../../../both/collections/messages.collection';
-import {Message} from '../../../both/models/message.model';
-import Users from '../../../both/collections/users.collection';
-import {User} from '../../../both/models/user.model';
+import {Chat, User, Message} from '../../../both/models';
 
 Meteor.publishComposite('chats', function(): PublishCompositeConfig<Chat> {
   if (! this.userId) return;

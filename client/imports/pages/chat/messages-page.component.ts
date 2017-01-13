@@ -1,16 +1,15 @@
 import {Component, OnInit, OnDestroy} from '@angular/core';
 import {NavParams, PopoverController} from 'ionic-angular';
+import {MeteorReactive} from 'angular2-meteor';
 import {Meteor} from 'meteor/meteor';
-import {Chat} from '../../../../both/models/chat.model';
-import Messages from '../../../../both/collections/messages.collection';
 import {Observable} from 'rxjs';
-import {Message} from '../../../../both/models/message.model';
+import {MeteorObservable} from 'meteor-rxjs';
+
+import {Messages} from '../../../../both/collections';
+import {Chat, Message} from '../../../../both/models';
 import template from './messages-page.component.html';
 import style from './messages-page.component.scss';
 import {MessagesOptionsComponent} from './messages-options.component';
-import {MeteorObservable} from 'meteor-rxjs';
-
-import {MeteorReactive} from 'angular2-meteor';
 
 @Component({
   selector: 'messages-page',
