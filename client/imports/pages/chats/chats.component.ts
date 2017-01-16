@@ -5,9 +5,8 @@ import {MeteorObservable} from 'meteor-rxjs';
 import {NavController, PopoverController, ModalController} from 'ionic-angular';
 import {MeteorReactive} from 'angular2-meteor';
 
-import {Chat, Message} from '../../../../both/models';
-import {Users, Messages} from '../../../../both/collections';
-import Chats from '../../../../both/collections/chats.collection';
+import {Chat, Message} from 'both/models';
+import {Users, Chats, Messages} from 'both/collections';
 import style from './chats.component.scss';
 import template from './chats.component.html';
 import {NewChatComponent} from './new-chat.component';

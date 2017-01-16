@@ -4,9 +4,8 @@ import {NavController, ViewController, AlertController} from 'ionic-angular';
 import {Meteor} from 'meteor/meteor';
 import {Observable} from 'rxjs/Observable';
 
-import {Users} from '../../../../both/collections';
-import Chats from '../../../../both/collections/chats.collection';
-import {User} from '../../../../both/models';
+import {Chats, Users} from 'both/collections';
+import {User} from 'both/models';
 import template from './new-chat.component.html';
 import style from './new-chat.component.scss';
 

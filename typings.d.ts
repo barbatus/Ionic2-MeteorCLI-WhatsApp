@@ -1,8 +1,3 @@
-/// <reference types="zone.js" />
-/// <reference types="meteor-typings" />
-/// <reference types="@types/chai" />
-/// <reference types="@types/mocha" />
-
 declare module "*.html" {
   const template: string;
   export default template;

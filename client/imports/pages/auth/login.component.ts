@@ -5,7 +5,7 @@ import {Accounts} from 'meteor/accounts-base';
 import {VerificationComponent} from './verification.component';
 import template from './login.component.html';
 import style from './login.component.scss';
- 
+
 @Component({
   selector: 'login',
   template,

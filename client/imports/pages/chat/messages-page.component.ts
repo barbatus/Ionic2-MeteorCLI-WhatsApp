@@ -5,8 +5,8 @@ import {Meteor} from 'meteor/meteor';
 import {Observable} from 'rxjs';
 import {MeteorObservable} from 'meteor-rxjs';
 
-import {Messages} from '../../../../both/collections';
-import {Chat, Message} from '../../../../both/models';
+import {Messages} from 'both/collections';
+import {Chat, Message} from 'both/models';
 import template from './messages-page.component.html';
 import style from './messages-page.component.scss';
 import {MessagesOptionsComponent} from './messages-options.component';

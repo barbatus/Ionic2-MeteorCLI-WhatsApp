@@ -6,7 +6,19 @@
     "moduleResolution": "node",
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
-    "sourceMap": true
+    "sourceMap": true,
+    "baseUrl": ".",
+    "paths": {
+      "*": ["*"]
+    },
+    "types": [
+      "meteor-typings",
+      "@types/meteor-accounts-phone",
+      "@types/meteor-publish-composite",
+      "@types/chai-spies",
+      "@types/mocha",
+      "@types/chai"
+    ]
   },
   "exclude": [
     "node_modules"

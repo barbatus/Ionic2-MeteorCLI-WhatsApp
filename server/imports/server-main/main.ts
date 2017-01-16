@@ -1,6 +1,6 @@
 import {Accounts} from 'meteor/accounts-base';
 
-import {Chats, Messages, Users} from '../../../both/collections';
+import {Chats, Messages, Users} from 'both/collections';
 
 export class Main {
   start(): void {
