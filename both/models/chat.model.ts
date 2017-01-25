@@ -1,6 +1,7 @@
 import {Observable} from 'rxjs';
 
-import {Messages, Users}  from '../collections';
+import Messages  from '../collections/messages.collection';
+import Users from '../collections/users.collection';
 import Message from './message.model';
 
 declare const _;

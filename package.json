@@ -4,8 +4,7 @@
   "scripts": {
     "start": "meteor run --settings private/settings.json",
     "test": "meteor test --driver-package practicalmeteor:mocha",
-    "test:ci": "meteor test --once --driver-package dispatch:mocha-phantomjs",
-    "postinstall": "typings i"
+    "test:ci": "meteor test --once --driver-package dispatch:mocha-phantomjs"
   },
   "devDependencies": {
     "@types/chai": "^3.4.33",
