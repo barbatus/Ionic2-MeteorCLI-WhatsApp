@@ -9,9 +9,5 @@ import {AppModule} from './imports/app/app.module';
 enableProdMode();
 
 Meteor.startup(() => {
-  Tracker.autorun(() => {
-    if (Meteor.loggingIn()) return;
-
-    platformBrowserDynamic().bootstrapModule(AppModule);
-  });
+  platformBrowserDynamic().bootstrapModule(AppModule);
 });

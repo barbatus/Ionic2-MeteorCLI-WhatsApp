@@ -37,8 +37,8 @@ export class VerificationComponent implements OnInit {
     Accounts.verifyPhone(this.phone, this.code, (err: Error) => {
       this.zone.run(() => {
         if (err) return this.handleError(err);
- 
-        this.navCtrl.setRoot(ProfileComponent, {}, {
+
+        this.navCtrl.push(ProfileComponent, {}, {
           animate: true
         });
       });

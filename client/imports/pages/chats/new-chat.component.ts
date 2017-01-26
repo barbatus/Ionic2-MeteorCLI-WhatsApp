@@ -5,7 +5,7 @@ import {Meteor} from 'meteor/meteor';
 import {Observable} from 'rxjs/Observable';
 
 import {Chats, Users} from 'both/collections';
-import {User} from 'both/models';
+import {User, Chat} from 'both/models';
 import template from './new-chat.component.html';
 import style from './new-chat.component.scss';
 
@@ -53,8 +53,9 @@ export class NewChatComponent implements OnInit {
         memberIds: this.senderId
       })
         .startWith([]) // empty result
-        .select('memberIds')
+        .select<Chat[], string[]>('memberIds')
         .mergeMap(memberIds => {
+          memberIds = memberIds.concat(this.senderId);
           return Users.find({
             _id: {$nin: memberIds}
           }).startWith([]);

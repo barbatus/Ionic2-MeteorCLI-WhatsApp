@@ -26,7 +26,7 @@ export class ProfileComponent implements OnInit {
   ngOnInit(): void {
     this.profile = Meteor.user().profile || {
       name: '',
-      picture: '/assets/ionicons/dist/svg/ios-contact.svg'
+      picture: '/assets/ios-contact.svg'
     };
   }
  
